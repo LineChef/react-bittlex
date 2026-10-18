@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import './styles/global.less'
+import Nav from './components/nav/Nav.tsx'
 
 const rootElement = document.getElementById('root')
 
@@ -12,6 +12,6 @@ if (rootElement === null) {
 
 createRoot(rootElement).render(
   <StrictMode>
-    <App />
+    <Nav />
   </StrictMode>,
 )

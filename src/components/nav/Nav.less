@@ -1,0 +1,114 @@
+@import '../../styles/variables.less';
+
+.Nav {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: @nav-width-open;
+  height: 100vh;
+  padding: 16px 12px;
+  overflow: hidden;
+  background: @component-bg;
+  border-right: 1px solid @component-border;
+  color: @global-font-color;
+  transition: width @generic-transition;
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 0 4px;
+  }
+
+  &-title {
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    color: @global-accent-color;
+  }
+
+  &-toggle {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: @global-font-color;
+    font-size: 18px;
+    cursor: pointer;
+
+    &:hover {
+      background: @component-hover-bg;
+    }
+
+    &:focus-visible {
+      outline: 2px solid @global-accent-color;
+      outline-offset: 2px;
+    }
+  }
+
+  &-heading {
+    margin: 0 0 8px;
+    padding: 0 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    color: @global-font-color-muted;
+  }
+
+  &-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    color: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background @generic-transition;
+
+    &:hover {
+      background: @component-hover-bg;
+    }
+
+    &:focus-visible {
+      outline: 2px solid @global-accent-color;
+      outline-offset: -2px;
+    }
+
+    &-active {
+      background: @component-active-bg;
+      color: @global-accent-color;
+    }
+  }
+
+  &-icon {
+    flex-shrink: 0;
+    width: 24px;
+    text-align: center;
+  }
+
+  // Collapsed state: toggle this class from React state
+  &-collapsed {
+    width: @nav-width-collapsed;
+
+    .nav-title,
+    .nav-label,
+    .nav-heading {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+}
