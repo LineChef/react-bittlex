@@ -17,6 +17,7 @@ export type Section =
   | 'about'
 
 // Heading
+// a single heading inside PageEntry
 export interface Heading {
   level: number
   text: string
@@ -24,6 +25,7 @@ export interface Heading {
 }
 
 // PageEntry
+// One item in the manefest's pages list
 export interface PageEntry {
   route: string
   title: string
@@ -38,6 +40,7 @@ export interface PageEntry {
 }
 
 // NavNode
+// one node in the manifest's nav tree
 export interface NavNode {
   route: string
   title: string
@@ -59,6 +62,7 @@ export type AssetType =
   | 'html'
 
 // Asset
+// one item from the manifest's assets list
 export interface Asset {
   path: string
   kind: AssetType
@@ -66,6 +70,7 @@ export interface Asset {
 }
 
 // Latest
+
 export interface Latest {
   version: string
   built: string
@@ -77,19 +82,21 @@ export interface Latest {
 }
 
 // Manifest
+// The site's table of contents (nav tree, pages, assets)
 export interface Manifest {
   version: string
   built: string
   repo: string | null
   branch: string
-  base: string
-  assetsUrl: string
-  pages: PageEntry[]
-  nav: NavNode[]
+  base: string // url path links use
+  assetsUrl: string // where assets are
+  pages: PageEntry[] // a flat list of pages
+  nav: NavNode[] // data for the navigation
   assets: Asset[]
 }
 
 // SearchRecord
+// one record from search.json
 export interface SearchRecord {
   route: string
   title: string
