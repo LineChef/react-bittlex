@@ -5,4 +5,11 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   base: '/react-bittlex/',
   plugins: [react()],
+  css: {
+    preprocessorOptions: {
+      less: {
+        additionalData: `@import (reference) '/src/styles/variables.less';`,
+      },
+    },
+  },
 })
