@@ -32,10 +32,10 @@ function Nav() {
   console.log(manifest.nav)
 
   return (
-    <nav className="Nav" aria-label="Main Navigation">
+    <nav className="Nav" aria-label="Primary Navigation">
 
       <div className="Nav-header">
-         <h3 className="Nav-title">G2 BittleX</h3>
+         <h2 className="Nav-title">G2 BittleX</h2>
          <button
            type="button"
            className="Nav-toggle"

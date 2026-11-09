@@ -1,3 +1,36 @@
-.NavItem {
-    display: block;
+@import '../../styles/variables.less';
+
+.Nav-list-item {
+      &-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 12px;
+        border-radius: 6px;
+        color: @nav-primary-link-color;
+        text-decoration: none;
+        transition: background 200ms ease;
+
+        &:hover {
+            background: @nav-primary-link-hover;
+        }
+
+        &-active {
+            background: @component-active-bg;
+            color: @global-accent-color;
+        }
+    }
+
+    &-children {
+        list-style-type: none;
+        padding-left: 20px;
+
+        .Nav-list-item-link {
+            color: @nav-secondary-link-color;
+
+            &:hover {
+                color: @nav-secondary-link-hover;
+            }
+        }
+    }
 }

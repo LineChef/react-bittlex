@@ -9,11 +9,11 @@
   width: @nav-width-open;
   height: 100vh;
   padding: 16px 12px;
-  overflow: hidden;
+  overflow: scroll;
   background: @component-bg;
   border-right: 1px solid @component-border;
   color: @global-font-color;
-  transition: width @generic-transition;
+  transition: width 200ms ease;
 
   &-header {
     display: flex;
@@ -25,9 +25,9 @@
 
   &-title {
     font-weight: 700;
-    letter-spacing: 0.02em;
     white-space: nowrap;
     color: @global-accent-color;
+    margin: 0;
   }
 
   &-toggle {
@@ -57,39 +57,12 @@
     list-style: none;
   }
 
-  &-link {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 12px;
-    border-radius: 6px;
-    color: inherit;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: background @generic-transition;
-
-    &:hover {
-      background: @component-hover-bg;
-    }
-
-    &:focus-visible {
-      outline: 2px solid @global-accent-color;
-      outline-offset: -2px;
-    }
-
-    &-active {
-      background: @component-active-bg;
-      color: @global-accent-color;
-    }
-  }
-
   &-icon {
     flex-shrink: 0;
     width: 24px;
     text-align: center;
   }
 
-  // Collapsed state: toggle this class from React state
   &-collapsed {
     width: @nav-width-collapsed;
 
