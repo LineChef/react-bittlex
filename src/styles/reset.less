@@ -1,0 +1,70 @@
+/* 1. Low specificity layer setup so your own rules always win */
+@layer reset {
+  /* 2. Consistent box-sizing across elements and pseudo-elements */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* 3. Remove default margins */
+  * {
+    margin: 0;
+  }
+
+  /* 4. Body layout setup: readable line height & antialiased text */
+  body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  /* 5. Responsive, block-level media (removes baseline inline gaps) */
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* 6. Form controls inherit page fonts instead of OS browser defaults */
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  /* 7. Overflow control for long text/URLs */
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+  }
+
+  /* 8. Modern typography balancing (progressive enhancement) */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* 9. Root stacking context isolation for app roots (e.g., React/Vue) */
+  #root,
+  #__next {
+    isolation: isolate;
+  }
+}

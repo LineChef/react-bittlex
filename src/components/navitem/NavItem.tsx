@@ -14,7 +14,7 @@ function NavItem({ node }: NavItemProps) {
   const [ isOpen, setIsOpen ] = useState<boolean>(false)
 
   return (
-    <li className="Nav-list-item">
+    <li className={`Nav-list-item ${isOpen ? 'open' : ''}`}>
 
         <div className={`Nav-section ${isOpen ? 'open' : ''}`} onClick={() => setIsOpen(!isOpen)}>
             <a className="Nav-list-item-link" href={node.route}>{node.title}</a>

@@ -35,9 +35,8 @@ function Nav() {
   // console.log(manifest.nav)
 
   return (
-    <nav className="Nav" aria-label="Primary Navigation">
-
-      <div className="Nav-header">
+    <nav className={`Nav ${isCollapsed ? 'closed' : ''}`} aria-label="Primary Navigation">
+      <div className="Nav-header" onClick={() => setIsCollapsed(!isCollapsed)}>
          <h2 className="Nav-title">G2 BittleX</h2>
          <button
            type="button"
@@ -58,7 +57,6 @@ function Nav() {
           <NavItem key={node.route} node={node} />
         ))}
       </ul>
-
     </nav>
   )}
 

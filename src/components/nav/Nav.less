@@ -3,22 +3,37 @@
   top: 0;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 10px;
   width: @nav-width-open;
   height: 100vh;
   padding: 16px 12px;
   overflow: scroll;
   background: @component-bg;
   border-right: 1px solid @component-border;
+  border-bottom: 1px solid @component-border;
   color: @global-font-color;
-  transition: width 200ms ease;
+  transition: all 200ms ease;
+  border-radius: 5px;
+
+  &.closed {
+    width: @nav-width-collapsed;
+    height: @nav-height-collapsed;
+
+    .Nav-header {
+      gap: 0;
+    }
+    .Nav-title,
+    .Nav-list {
+      display: none;
+    }
+  }
 
   &-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 8px;
-    padding: 0 4px;
+    padding: 0;
   }
 
   &-title {
@@ -58,16 +73,5 @@
   &-section {
     display: flex;
     justify-content: space-between;
-  }
-
-  &-collapsed {
-    width: @nav-width-collapsed;
-
-    .nav-title,
-    .nav-label,
-    .nav-heading {
-      opacity: 0;
-      pointer-events: none;
-    }
   }
 }
