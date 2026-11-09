@@ -8,6 +8,8 @@ import NavItem from '../navitem/NavItem.tsx'
 function Nav() {
   const [ error, setError ] = useState<Error | null>( null )
   const [ manifest, setManifest ] = useState<Manifest | null>( null )
+  const [ isCollapsed, setIsCollapsed ] = useState<boolean>(false)
+
   useEffect(() => {
     loadManifest().then(setManifest).catch((e) => {
       if (e instanceof Error) {
@@ -28,8 +30,9 @@ function Nav() {
   if (manifest === null) {
     return <p>loading...</p>
   }
-  console.log('Navigation')
-  console.log(manifest.nav)
+
+  // console.log('Navigation')
+  // console.log(manifest.nav)
 
   return (
     <nav className="Nav" aria-label="Primary Navigation">
@@ -49,16 +52,12 @@ function Nav() {
         </button>
       </div>
 
-      <div className="Nav-section">
-        <ul className="Nav-list">
-
-          {/* create an li for each Nav node */}
-          {manifest.nav.map((node) => (
-            <NavItem key={node.route} node={node} />
-          ))}
-
-        </ul>
-      </div>
+      <ul className="Nav-list">
+        {/* create an li for each Nav node */}
+        {manifest.nav.map((node) => (
+          <NavItem key={node.route} node={node} />
+        ))}
+      </ul>
 
     </nav>
   )}

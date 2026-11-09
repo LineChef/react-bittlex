@@ -21,6 +21,25 @@
         }
     }
 
+    &-toggle {
+        margin: 0;
+        padding: 0;
+        background: none;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+
+        .chevron-down {
+            display: block;
+        }
+    }
+
+    .Nav-section.open {
+        .chevron-down {
+            transform: rotate(180deg);
+        }
+    }
+
     &-children {
         list-style-type: none;
         padding-left: 20px;

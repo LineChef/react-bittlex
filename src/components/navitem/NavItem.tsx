@@ -1,4 +1,5 @@
 import './NavItem.less'
+import { useState } from 'react'
 import type { NavNode } from '../../docs/types.ts'
 
 export interface NavItemProps {
@@ -10,17 +11,29 @@ function NavItem({ node }: NavItemProps) {
 
   // check if the node contains children
   const hasChildren = node.children && node.children.length > 0
+  const [ isOpen, setIsOpen ] = useState<boolean>(false)
 
   return (
     <li className="Nav-list-item">
-        <a className="Nav-list-item-link" href={node.route}>{node.title}</a>
-        {hasChildren && (
+
+        <div className={`Nav-section ${isOpen ? 'open' : ''}`} onClick={() => setIsOpen(!isOpen)}>
+            <a className="Nav-list-item-link" href={node.route}>{node.title}</a>
+            {hasChildren && (
+                <button className="Nav-list-item-toggle" type="button" aria-label="Toggle Item Navigation">
+                    <svg className="chevron-down" width="24px" height="24px" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg>
+                </button>
+            )}
+        </div>
+        {hasChildren && isOpen && (
             <ul className="Nav-list-item-children">
                 {node.children?.map((child) => (
                     <NavItem key={child.route} node={child} />
                 ))}
             </ul>
         )}
+
     </li>
   )}
 
