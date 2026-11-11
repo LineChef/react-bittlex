@@ -7,16 +7,24 @@ export type Section =
   | 'hardware'
   | 'vision'
   | 'rl'
-  | 'research'
-  | 'plan-detail'
-  | 'planned'
-  | 'archive'
   | 'blueprints'
   | 'code'
   | 'legal'
   | 'about'
 
-// Heading
+// who a page is written for
+export type Audience = 'visitor' | 'builder' | 'contributor'
+
+// what a page is
+export type Kind = 'overview' | 'guide' | 'reference' | 'concept'
+
+// sidebar group on a top-level nav node
+export type TopGroup =
+  | 'Start here'
+  | 'Build and operate'
+  | 'Under the hood'
+  | 'About'
+
 // a single heading inside PageEntry
 export interface Heading {
   level: number
@@ -24,19 +32,20 @@ export interface Heading {
   id: string
 }
 
-// PageEntry
-// One item in the manefest's pages list
+// One item in the manifest's pages list
 export interface PageEntry {
   route: string
   title: string
   section: Section
   source: string
   updated: string
+  audience: Audience
+  kind: Kind
   summary: string
   headings: Heading[]
   parent: string | null
   order: number
-  group?: string
+  group?: string // a TopGroup on top-level pages, a folder README group label on children
 }
 
 // NavNode
@@ -47,7 +56,7 @@ export interface NavNode {
   section: Section
   order: number
   folder?: boolean
-  group?: string
+  group?: string // a TopGroup on top-level nodes, a folder README group label on children
   children?: NavNode[]
 }
 

@@ -1,5 +1,6 @@
 import './NavItem.less'
 import { useState } from 'react'
+import { NavLink } from 'react-router'
 import type { NavNode } from '../../docs/types.ts'
 
 export interface NavItemProps {
@@ -16,8 +17,8 @@ function NavItem({ node }: NavItemProps) {
   return (
     <li className={`Nav-list-item ${isOpen ? 'open' : ''}`}>
 
-        <div className={`Nav-section ${isOpen ? 'open' : ''}`} onClick={() => setIsOpen(!isOpen)}>
-            <a className="Nav-list-item-link" href={node.route}>{node.title}</a>
+        <div className={`Nav-section ${isOpen ? 'open' : ''}`} onClick={() => {if(hasChildren) {setIsOpen(!isOpen)}}}>
+            <NavLink className="Nav-list-item-link" to={`/${node.route}`} end={node.route === ''}>{node.title}</NavLink>
             {hasChildren && (
                 <button className="Nav-list-item-toggle" type="button" aria-label="Toggle Item Navigation">
                     <svg className="chevron-down" width="24px" height="24px" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
