@@ -31,8 +31,8 @@ function Nav() {
     return <p>loading...</p>
   }
 
-  // console.log('Navigation')
-  // console.log(manifest.nav)
+  console.log('Navigation')
+  console.log(manifest.nav)
 
   return (
     <nav className={`Nav ${isCollapsed ? 'closed' : ''}`} aria-label="Primary Navigation">

@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { loadPage } from '../docs/bundle.ts'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import './PageContent.less'
 
 export interface PageContentProps {
@@ -35,7 +37,11 @@ function PageContent({ route }: PageContentProps) {
     }
 
   return (
-    <pre className="Page-content">{content}</pre>
+    <div className="Page-content">
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            {content}
+        </ReactMarkdown>
+    </div>
   )}
 
   export default PageContent
