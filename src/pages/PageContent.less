@@ -1,8 +1,184 @@
+// Article styles for rendered Markdown.
 .Page-content {
-    padding: 20px;
+    max-width: @article-max-width;
+    margin: 0 auto;
+    padding: 32px 24px 64px;
+    color: @global-font-color;
+    font-size: 16px;
+    line-height: 27px;
+    overflow-wrap: anywhere; // long URLs and identifiers wrap instead of overflowing
 
-    // pre,
-    // code {
-    //     overflow-x: auto;
-    // }
+    // ---- Headings ----
+    h1, h2, h3, h4, h5, h6 {
+        color: @article-heading-color;
+        font-weight: 600;
+        margin: 40px 0 16px;
+        scroll-margin-top: 24px; // keeps a heading visible when jumped to via #anchor
+    }
+
+    h1 {
+        margin-top: 0;
+        padding-bottom: 12px;
+        font-size: 36px;
+        line-height: 44px;
+        letter-spacing: -0.5px;
+        border-bottom: 1px solid @component-border;
+    }
+    h2 {
+        padding-bottom: 8px;
+        font-size: 26px;
+        line-height: 34px;
+        border-bottom: 1px solid @component-border;
+    }
+    h3 {
+        font-size: 20px;
+        line-height: 28px;
+    }
+    h4 {
+        font-size: 17px;
+        line-height: 24px;
+    }
+    h5,
+    h6 {
+        font-size: 14px;
+        line-height: 20px;
+        color: @global-font-color-muted;
+        text-transform: uppercase;
+    }
+
+    p,
+    ul,
+    ol,
+    blockquote,
+    pre,
+    table {
+        margin: 0 0 18px;
+    }
+
+    strong {
+        color: @article-heading-color;
+        font-weight: 600;
+    }
+
+    a {
+        color: @global-accent-color;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        text-decoration-color: fade(@global-accent-color, 40%);
+        transition: text-decoration-color 150ms ease;
+
+        &:hover {
+            text-decoration-color: @global-accent-color;
+        }
+
+        &:focus-visible {
+            outline: 2px solid @global-accent-color;
+            outline-offset: 2px;
+            border-radius: 2px;
+        }
+    }
+
+    // Lists
+    ul,
+    ol {
+        padding-left: 24px;
+    }
+
+    ul { list-style: disc; }
+    ol { list-style: decimal; }
+
+    li {
+        margin: 5px 0;
+
+        > ul,
+        > ol {
+            margin: 5px 0 0;
+        }
+    }
+
+    li::marker {
+        color: @global-font-color-muted;
+    }
+
+    li.task-list-item {
+        list-style: none;
+        margin-left: -24px;
+
+        input[type='checkbox'] {
+            margin-right: 8px;
+            accent-color: @global-accent-color;
+        }
+    }
+
+    blockquote {
+        padding: 6px 16px;
+        color: @global-font-color-muted;
+        border-left: 3px solid @article-quote-border;
+
+        > :last-child { margin-bottom: 0; }
+    }
+
+    hr {
+        margin: 40px 0;
+        border: 0;
+        border-top: 1px solid @component-border;
+    }
+
+    code {
+        padding: 2px 6px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 14px;
+        background: @article-inline-code-bg;
+        border-radius: 4px;
+    }
+
+    pre {
+        padding: 16px;
+        overflow-x: auto; // long lines scroll sideways instead of stretching the page
+        line-height: 22px;
+        background: @article-code-bg;
+        border: 1px solid @component-border;
+        border-radius: 8px;
+
+        code {
+            padding: 0;
+            font-size: 14px;
+            background: none;
+            border-radius: 0;
+            overflow-wrap: normal; // keep code lines intact; the block scrolls instead
+        }
+    }
+
+    table {
+        display: block; // lets wide tables scroll sideways on their own
+        max-width: 100%;
+        overflow-x: auto;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        padding: 8px 14px;
+        text-align: left;
+        border: 1px solid @component-border;
+    }
+
+    th {
+        color: @article-heading-color;
+        font-weight: 600;
+        background: @component-bg;
+    }
+
+    tbody tr:nth-child(even) {
+        background: fade(@component-bg, 60%);
+    }
+
+    img, svg {
+        max-width: 100%;
+        height: auto;
+        margin: 24px 0;
+    }
+    img {
+        border-radius: 8px;
+    }
 }

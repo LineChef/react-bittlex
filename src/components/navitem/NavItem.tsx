@@ -1,24 +1,28 @@
 import './NavItem.less'
 import { useState } from 'react'
-import { NavLink } from 'react-router'
+import { NavLink, useLocation } from 'react-router'
 import type { NavNode } from '../../docs/types.ts'
 
 export interface NavItemProps {
     node: NavNode
 }
 
+function isInside(node: NavNode, pathname: string): boolean {
+    return pathname === `/${node.route}` || (node.children?.some( (child) => isInside(child, pathname )) ?? false)
+}
+
 // get the NavItem data
 function NavItem({ node }: NavItemProps) {
-
+  const location = useLocation()
   // check if the node contains children
   const hasChildren = node.children && node.children.length > 0
-  const [ isOpen, setIsOpen ] = useState<boolean>(false)
+  const [ isOpen, setIsOpen ] = useState<boolean>(isInside(node, location.pathname))
 
   return (
     <li className={`Nav-list-item ${isOpen ? 'open' : ''}`}>
 
         <div className={`Nav-section ${isOpen ? 'open' : ''}`} onClick={() => {if(hasChildren) {setIsOpen(!isOpen)}}}>
-            <NavLink className="Nav-list-item-link" to={`/${node.route}`} end={node.route === ''}>{node.title}</NavLink>
+            <NavLink className={({ isActive }) => `Nav-list-item-link ${isActive ? 'Nav-list-item-link-active' : ''}`} to={`/${node.route}`} end={true}>{node.title}</NavLink>
             {hasChildren && (
                 <button className="Nav-list-item-toggle" type="button" aria-label="Toggle Item Navigation">
                     <svg className="chevron-down" width="24px" height="24px" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">

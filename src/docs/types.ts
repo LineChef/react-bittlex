@@ -11,6 +11,8 @@ export type Section =
   | 'code'
   | 'legal'
   | 'about'
+  | 'specification'
+
 
 // who a page is written for
 export type Audience = 'visitor' | 'builder' | 'contributor'
@@ -45,7 +47,10 @@ export interface PageEntry {
   headings: Heading[]
   parent: string | null
   order: number
-  group?: string // a TopGroup on top-level pages, a folder README group label on children
+  group?: string
+  navTitle?: string
+  html: string
+  images?: string[]
 }
 
 // NavNode
@@ -76,6 +81,9 @@ export interface Asset {
   path: string
   kind: AssetType
   size: number
+  width?: number
+  height?: number
+  usedBy?: string[]
 }
 
 // Latest
